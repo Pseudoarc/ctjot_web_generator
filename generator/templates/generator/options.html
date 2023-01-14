@@ -9,70 +9,16 @@
 {% block content %}
     <div class="container">
       <h1>Chrono Trigger Jets of Time Randomizer</h1>
-      <h4>Version 3.2.0</h4>
+      <h4>Legacy Of Cyrus Tournament Edition</h4>
 
-      <!-- Preset buttons -->
-      <h2 class="pt-4">Presets</h2>
-      <div class="border border-primary rounded p-2">
-        <button class="btn btn-primary mt-1 mb-1" type="button" onclick="resetAll()">Reset All</button>
-        <button class="btn btn-primary mt-1 mb-1" type="button" onclick="presetRace()">Race</button>
-        <button class="btn btn-primary mt-1 mb-1" type="button" onclick="presetNewPlayer()">New Player</button>
-        <button class="btn btn-primary mt-1 mb-1" type="button" onclick="presetLostWorlds()">Lost Worlds</button>
-        <button class="btn btn-primary mt-1 mb-1" type="button" onclick="presetHard()">Hard</button>
-        <button class="btn btn-primary mt-1 mb-1" type="button" onclick="presetLegacyOfCyrus()">Legacy of Cyrus</button>
-      </div> <!-- End preset buttons -->
       
-      <form name="game_options_form" id="game_options_form" action="{% url 'generator:generate' %}" method="post" enctype="multipart/form-data" onsubmit="return prepareForm()">
+      <form name="game_options_form" id="game_options_form" action="{% url 'generator:generate' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         <h2 class="mt-3"> Select Game Options (<a href="https://wiki.ctjot.com/doku.php?id=flags" target="_blank">help</a>)</h2>
 
         <ul class="nav nav-tabs">
-          <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#options-general">General</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#options-tabs">Tabs</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#options-dc">Duplicate Chars</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#options-ro">Boss Rando</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#options-qol">Quality of Life</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#options-extra">Extra</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#options-mystery">Mystery</a></li>
         </ul>
-
-        <div class="tab-content">
-          <!-- General Options Tab -->
-          <div class="tab-pane fade show active" id="options-general" >
-            {% include "generator/options/general_tab.html" %}
-          </div>
-
-          <!-- Tabs options tab -->
-          <div class="tab-pane fade" id="options-tabs">
-            {% include "generator/options/tabs_tab.html" %}
-          </div>
-
-          <!-- DC options tab -->
-          <div class="tab-pane fade" id="options-dc">
-            {% include "generator/options/dup_char_tab.html" %}
-          </div>
-
-          <!-- ro options tab -->
-          <div class="tab-pane fade" id="options-ro">
-            {% include "generator/options/boss_rando_tab.html" %}
-          </div>
-
-          <!-- qol options tab -->
-          <div class="tab-pane fade" id="options-qol">
-            {% include "generator/options/quality_of_life_tab.html" %}
-          </div>
-
-          <!-- Extra options tab -->
-          <div class="tab-pane fade" id="options-extra">
-            {% include "generator/options/extra_tab.html" %}
-          </div>
-
-          <!-- Mystery options tab -->
-          <div class="tab-pane fade" id="options-mystery">
-            {% include "generator/options/mystery_tab.html" %}
-          </div>
-        </div> <!-- Tab content div -->
 
         <h2 class="mt-3">Generate Game</h2>
         <div class="border border-primary rounded p-2 mb-3">
