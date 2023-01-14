@@ -15,6 +15,7 @@ from django.conf import settings as conf
 sys.path.append(os.path.join(conf.BASE_DIR, 'jetsoftime', 'sourcefiles'))
 
 # Randomizer types
+import bossrandotypes as rotypes
 import ctenums
 import randoconfig
 import randomizer
@@ -209,7 +210,7 @@ class RandomizerInterface:
                 self.clamp((form.cleaned_data['battle_gauge_style']), 0, 2)
 
         self.randomizer.settings = settings
-        self.randomizer.set_config(config)
+        self.randomizer.config = config
 
     def get_settings(self) -> rset.Settings:
         """
@@ -263,11 +264,11 @@ class RandomizerInterface:
         settings.techorder = rset.TechOrder.FULL_RANDOM
 
         # flags
-        settings.settings.gameflags = settings.gameflags | rset.GameFlags.FIX_GLITCH
-        settings.settings.gameflags = settings.gameflags | rset.GameFlags.FAST_PENDANT
-        settings.settings.gameflags = settings.gameflags | rset.GameFlags.UNLOCKED_MAGIC
-        settings.settings.gameflags = settings.gameflags | rset.GameFlags.GEAR_RANDO
-        settings.settings.gameflags = settings.gameflags | rset.GameFlags.FAST_TABS
+        settings.gameflags = settings.gameflags | rset.GameFlags.FIX_GLITCH
+        settings.gameflags = settings.gameflags | rset.GameFlags.FAST_PENDANT
+        settings.gameflags = settings.gameflags | rset.GameFlags.UNLOCKED_MAGIC
+        settings.gameflags = settings.gameflags | rset.GameFlags.GEAR_RANDO
+        settings.gameflags = settings.gameflags | rset.GameFlags.FAST_TABS
 
         return settings
     # End __convert_form_to_settings
@@ -339,8 +340,8 @@ class RandomizerInterface:
 
         # Boss data
         for location in config.boss_assign_dict.keys():
-            if config.boss_assign_dict[location] == ctenums.BossID.TWIN_BOSS:
-                twin_type = config.boss_data_dict[ctenums.BossID.TWIN_BOSS].scheme.ids[0]
+            if config.boss_assign_dict[location] == rotypes.BossID.TWIN_BOSS:
+                twin_type = config.boss_data_dict[rotypes.BossID.TWIN_BOSS].parts[0].enemy_id
                 twin_name = config.enemy_dict[twin_type].name
                 boss_str = "Twin " + str(twin_name)
             else:
