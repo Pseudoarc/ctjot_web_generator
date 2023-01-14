@@ -325,9 +325,11 @@ class RandomizerInterface:
         # Character data
         for recruit_spot in config.char_assign_dict.keys():
             held_char = config.char_assign_dict[recruit_spot].held_char
+            reassign_char = \
+                config.pcstats.get_character_assignment(held_char)
             char_data = {'location': str(f"{recruit_spot}"),
                          'character': str(f"{held_char}"),
-                         'reassign': str(f"{config.char_manager.pcs[held_char].assigned_char}")}
+                         'reassign': str(f"{reassign_char}")}
             spoiler_log['characters'].append(char_data)
 
         # Key item data
